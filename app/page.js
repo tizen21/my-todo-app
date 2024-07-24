@@ -1,5 +1,5 @@
 import Header from "./Components/Header";
-import Tasklist from "./Components/Tasklist";
+import Tasklist from "./Components/TaskForm";
 
 export default function Home() {
   return (

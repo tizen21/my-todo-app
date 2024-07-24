@@ -1,13 +1,18 @@
 "use client";
-
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  MoonIcon,
+  SunIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "List", href: "#" },
-  { name: "Team", href: "#" },
-  { name: "Profile", href: "#" },
+  { name: "Form", href: "/" },
+  { name: "List", href: "/list" },
+  { name: "Team", href: "/team" },
 ];
 
 export default function Example() {
@@ -22,13 +27,13 @@ export default function Example() {
         <div className="flex flex-1">
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="flex lg:hidden">
@@ -42,12 +47,36 @@ export default function Example() {
             </button>
           </div>
         </div>
-        <a href="#" className="-m-1.5 p-1.5">
-          <span className="sr-only">Your Company</span>
+        <div className="flex justify-center items-center">
           <div className="flex">
-            <h1 className="font-bold text-xl p-4">My Todo App</h1>
+            <h1 className="font-bold text-xl text-black p-4 cursor-pointer">
+              My Todo App
+            </h1>
           </div>
-        </a>
+
+          <div className="text-black">
+            <label className="swap swap-rotate">
+              {/* this hidden checkbox controls the state */}
+              <input
+                type="checkbox"
+                className="theme-controller"
+                value="synthwave"
+              />
+
+              {/* sun icon */}
+              <SunIcon
+                aria-hidden="true"
+                className="swap-off h-5 w-5 fill-current"
+              />
+
+              {/* moon icon */}
+              <MoonIcon
+                aria-hidden="true"
+                className="swap-on h-5 w-5 fill-current"
+              />
+            </label>
+          </div>
+        </div>
         <div className="flex flex-1 justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
@@ -71,20 +100,6 @@ export default function Example() {
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
               </button>
-            </div>
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <div className="flex">
-                <h1 className="font-bold text-xl p-4">My Todo App</h1>
-              </div>
-            </a>
-            <div className="flex flex-1 justify-end">
-              <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Log in <span aria-hidden="true">&rarr;</span>
-              </a>
             </div>
           </div>
           <div className="mt-6 space-y-2">
