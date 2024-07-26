@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useDarkMode } from "../DarkModeContext";
 
 export default function TaskForm({ tasks, setTasks }) {
   const [task, setTask] = useState("");
@@ -37,12 +38,14 @@ export default function TaskForm({ tasks, setTasks }) {
   };
 
   return (
-    <div className="m-4 divide-y divide-gray-100 overflow-hidden bg-white shadow-md ring-1 ring-gray-900/5 sm:rounded-xl">
-      <li className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+    <div
+      className={`m-4 divide-y border divide-gray-100 overflow-hidden bg-white dark:bg-gray-900 ring-1 ring-gray-900/5 sm:rounded-xl dark:border-gray-500`}
+    >
+      <li className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 dark:hover:bg-gray-900 sm:px-6">
         <div className="flex min-w-0 gap-x-4 justify-center items-center"></div>
         <div className="flex w-full justify-center gap-x-4 items-center">
           <select
-            className="select select-bordered select-md shadow w-full max-w-xs"
+            className="select select-bordered select-md shadow w-full max-w-xs focus:ring-2 ring-offset-2 ring-gray-500 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800"
             value={priority}
             onChange={handleChangePriority}
           >
@@ -55,7 +58,7 @@ export default function TaskForm({ tasks, setTasks }) {
           <input
             type="text"
             placeholder="Add a task ..."
-            className="input input-bordered input-md w-full max-w-xs shadow focus:ring-2 ring- ring-offset-2 focus:placeholder:opacity-0"
+            className="input input-bordered input-md w-full max-w-xs shadow focus:ring-2 ring-offset-2 ring-gray-500 focus:placeholder:opacity-0 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800"
             value={task}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
@@ -64,7 +67,7 @@ export default function TaskForm({ tasks, setTasks }) {
           {task && priority && (
             <PlusCircleIcon
               aria-hidden="true"
-              className="h-6 w-6 flex-none text-gray-400 hover:cursor-pointer hover:text-black"
+              className="h-6 w-6 flex-none text-gray-400 hover:cursor-pointer hover:text-black dark:hover:text-white"
               onClick={handleAddTask}
             />
           )}
@@ -76,7 +79,7 @@ export default function TaskForm({ tasks, setTasks }) {
           {tasks.length > 0 && (
             <TrashIcon
               aria-hidden="true"
-              className="h-6 w-6 flex-none text-red-400 hover:cursor-pointer hover:text-black"
+              className="h-6 w-6 flex-none text-red-300 hover:cursor-pointer hover:text-black dark:hover:text-gray-50"
               onClick={deleteAllTasks}
             />
           )}
