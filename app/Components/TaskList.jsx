@@ -74,11 +74,11 @@ export default function TaskList({ tasks, setTasks, priority }) {
               />
             ) : (
               <p
-                className={`font-semibold text-md dark:text-gray-300 ${
+                className={`font-semibold text-md ${
                   item.completed
                     ? "line-through text-accent dark:text-info"
                     : ""
-                } transition-all duration-300 dark:text-gray-300`}
+                } transition-all duration-300 dark:text-gray-100`}
               >
                 {item.task}
               </p>
@@ -119,12 +119,12 @@ export default function TaskList({ tasks, setTasks, priority }) {
                 </div>
               )}
               {item.priority === "High" && (
-                <span className="inline-flex items-center justify-center rounded-full bg-red-50 dark:bg-red-200 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-800 ring-1 ring-inset ring-red-600/10 min-w-20">
+                <span className="inline-flex items-center justify-center rounded-full bg-red-50 dark:bg-red-200 px-2 py-1 text-xs hover:animate-pulse font-medium text-red-700 dark:text-red-800 ring-1 ring-inset ring-red-600/10 min-w-20">
                   {item.priority}
                 </span>
               )}
               {item.priority === "Secondary" && (
-                <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-200 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-800 ring-1 ring-inset ring-blue-700/10 w-20">
+                <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-200 px-2 py-1 text-xs font-medium hover:animate-pulse text-blue-700 dark:text-blue-800 ring-1 ring-inset ring-blue-700/10 w-20">
                   {item.priority}
                 </span>
               )}
@@ -132,6 +132,9 @@ export default function TaskList({ tasks, setTasks, priority }) {
           </div>
         </li>
       ))}
+      <div>
+        <p className="dark:text-white">Terminées</p>
+      </div>
     </div>
   );
 }
