@@ -51,9 +51,12 @@ export default function Example() {
         </div>
         <div className="flex justify-center items-center">
           <div className="flex">
-            <h1 className="font-bold text-xl text-black dark:text-gray-200 p-4 cursor-pointer dark:hover:text-gray-50">
+            <Link
+              className="font-bold text-xl text-black dark:text-gray-200 p-4 cursor-pointer dark:hover:text-gray-50"
+              href="/"
+            >
               My Todo App
-            </h1>
+            </Link>
           </div>
 
           <div className="text-black dark:text-gray-300 dark:hover:text-gray-50">

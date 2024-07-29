@@ -6,6 +6,8 @@ import TaskList from "./Components/TaskList";
 import Filter from "./Components/Filter";
 import { useState } from "react";
 import { useDarkMode } from "./DarkModeContext";
+import Divider from "./Components/ui/Divider";
+import Alert from "./Components/ui/Alert";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
@@ -18,10 +20,13 @@ export default function Home() {
       <TaskForm tasks={tasks} setTasks={setTasks} priority={priority} />
       {/* <div className="divider"></div>
       <Filter priority={priority} /> */}
-      <div className="divider dark:text-white dark:divider-info">
-        {tasks.length > 0 ? <p className="text-dark">{tasks.length}</p> : null}
-      </div>
+      <Divider color="divider-primary" darkColor="divider-info">
+        {tasks.length > 0 ? (
+          <p className="text-dark dark:text-info">{tasks.length}</p>
+        ) : null}
+      </Divider>
       <TaskList tasks={tasks} setTasks={setTasks} priority={priority} />
+      <Divider color="divider-accent" darkColor="divider-info" />
     </div>
   );
 }
