@@ -81,12 +81,12 @@ export default function Example() {
           </div>
         </div>
         <div className="flex flex-1 justify-end">
-          <a
-            href="#"
+          <Link
+            href="/login"
             className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
           >
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog

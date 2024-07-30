@@ -75,7 +75,9 @@ export default function TaskList({ tasks, setTasks, priority }) {
         {filteredTasks.map((item) => (
           <li
             key={item.id}
-            className={`flex flex-col items-center p-6 m-4 border border-gray-500 bg-gray-50 dark:bg-gray-900 dark:shadow-gray-500/60 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300`}
+            className={`flex flex-col items-center p-6 m-4 border border-gray-500 bg-gray-50 dark:bg-gray-900 dark:shadow-gray-500/60 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300 ${
+              item.completed ? "opacity-40" : ""
+            }`}
           >
             <div className="flex items-center justify-between w-full transition-shadow duration-300">
               {editTaskId === item.id ? (
