@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useDarkMode } from "../DarkModeContext";
+import Button from "./ui/Button";
 
 export default function TaskForm({ tasks, setTasks }) {
   const [task, setTask] = useState("");
@@ -65,11 +66,7 @@ export default function TaskForm({ tasks, setTasks }) {
           />
 
           {task && priority && (
-            <PlusCircleIcon
-              aria-hidden="true"
-              className="h-6 w-6 flex-none text-gray-400 hover:cursor-pointer hover:text-black dark:hover:text-white"
-              onClick={handleAddTask}
-            />
+            <Button color="info" title="Add" onClick={handleAddTask} />
           )}
         </div>
 

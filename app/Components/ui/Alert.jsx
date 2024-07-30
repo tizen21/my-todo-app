@@ -16,7 +16,7 @@ export default function Alert() {
           </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-green-800">
-              Task successfully finished ...
+              Task successfully done ...
             </p>
           </div>
           <div className="ml-auto pl-3">

@@ -29,8 +29,8 @@ export default function TaskList({ tasks, setTasks, priority }) {
   };
 
   const deleteTask = (id) => {
-    const newTab = tasks.filter((item) => item.id != id);
-    setTasks(newTab);
+    const newTasks = tasks.filter((item) => item.id != id);
+    setTasks(newTasks);
   };
 
   const handleEditClick = (id, currentText) => {
@@ -63,14 +63,19 @@ export default function TaskList({ tasks, setTasks, priority }) {
     }
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (priority === "All") return true;
+    return task.priority === priority;
+  });
+
   return (
     <>
       {showAlert && <Alert />}
       <div className="lg:grid lg:grid-cols-2 xl:grid-cols-3 dark:bg-gray-900">
-        {tasks.map((item) => (
+        {filteredTasks.map((item) => (
           <li
             key={item.id}
-            className={`flex flex-col items-center p-6 m-4 border border-gray-500 bg-gray-50 dark:bg-gray-800 dark:shadow-gray-500 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300`}
+            className={`flex flex-col items-center p-6 m-4 border border-gray-500 bg-gray-50 dark:bg-gray-900 dark:shadow-gray-500/60 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300`}
           >
             <div className="flex items-center justify-between w-full transition-shadow duration-300">
               {editTaskId === item.id ? (
