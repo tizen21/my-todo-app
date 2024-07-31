@@ -27,4 +27,4 @@
     "app/src/lib/auth.js"
   ],
   "exclude": ["node_modules"]
-, "app/login/page.jsx"}
+}
