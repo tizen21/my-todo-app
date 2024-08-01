@@ -16,7 +16,7 @@ const navigation = [
   { name: "Team", href: "/team" },
 ];
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { darkMode, setDarkMode } = useDarkMode();
 
@@ -80,12 +80,18 @@ export default function Example() {
             </label>
           </div>
         </div>
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 justify-end gap-4">
           <Link
-            href="/login"
+            href="/sign-up"
             className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
           >
-            Log in <span aria-hidden="true">&rarr;</span>
+            Sign up <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            href="/sign-in"
+            className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+          >
+            Sign in <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>

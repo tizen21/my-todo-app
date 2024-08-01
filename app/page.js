@@ -21,7 +21,6 @@ export default function Home() {
 
   return (
     <div className="h-screen dark:bg-gray-900">
-      <Header />
       <TaskForm tasks={tasks} setTasks={setTasks} priority={priority} />
       <Divider />
       <Filter onPriorityChange={setPriority} />
