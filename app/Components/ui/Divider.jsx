@@ -1,6 +1,6 @@
 export default function Divider({ children, color, darkColor }) {
   return (
-    <div className={`divider ${color} dark:text-white dark:${darkColor}`}>
+    <div className={`divider ${color} ${darkColor ? `dark:${darkColor}` : ""}`}>
       {children}
     </div>
   );

@@ -11,14 +11,26 @@ import {
 import { useDarkMode } from "../DarkModeContext";
 
 const navigation = [
-  { name: "Form", href: "/" },
-  { name: "List", href: "/list" },
+  { name: "List", href: "/" },
   { name: "Team", href: "/team" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { darkMode, setDarkMode } = useDarkMode();
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    setIsLoggedIn(false);
+  };
 
   return (
     <header className="bg-white dark:bg-gray-900">
@@ -81,18 +93,21 @@ export default function Header() {
           </div>
         </div>
         <div className="flex flex-1 justify-end gap-4">
-          <Link
-            href="/sign-up"
-            className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
-          >
-            Sign up <span aria-hidden="true">&rarr;</span>
-          </Link>
-          <Link
-            href="/sign-in"
-            className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
-          >
-            Sign in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+            >
+              Logout <span aria-hidden="true">&rarr;</span>
+            </button>
+          ) : (
+            <Link
+              href="/login"
+              className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:hover:text-gray-50"
+            >
+              Login <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog

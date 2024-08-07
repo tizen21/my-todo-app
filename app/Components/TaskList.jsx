@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CheckIcon,
   PencilIcon,
   TrashIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useDarkMode } from "../DarkModeContext";
 import Alert from "./ui/Alert";
 
 export default function TaskList({ tasks, setTasks, priority }) {
@@ -15,13 +14,19 @@ export default function TaskList({ tasks, setTasks, priority }) {
   const [editTaskText, setEditTaskText] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
+
   const handleCheck = (id) => {
-    setTasks((prev) =>
-      prev.map((item) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((item) => {
         if (item.id === id && !item.completed) {
           setShowAlert(true);
-          setTimeout(() => setShowAlert(false), 3000);
-          return { ...item, completed: !item.completed };
+          return { ...item, completed: true };
         }
         return item.id === id ? { ...item, completed: !item.completed } : item;
       })
@@ -29,8 +34,7 @@ export default function TaskList({ tasks, setTasks, priority }) {
   };
 
   const deleteTask = (id) => {
-    const newTasks = tasks.filter((item) => item.id != id);
-    setTasks(newTasks);
+    setTasks((prev) => prev.filter((item) => item.id !== id));
   };
 
   const handleEditClick = (id, currentText) => {
@@ -75,11 +79,11 @@ export default function TaskList({ tasks, setTasks, priority }) {
         {filteredTasks.map((item) => (
           <li
             key={item.id}
-            className={`flex flex-col items-center p-6 m-4 border border-gray-500 bg-gray-50 dark:bg-gray-900 dark:shadow-gray-500/60 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300 ${
+            className={`flex flex-col items-center p-6 m-4 border overflow-scroll border-gray-500 bg-gray-50 dark:bg-gray-900 dark:shadow-gray-500/60 sm:px-6 mb-2 rounded-2xl shadow-xl dark:shadow-2xl dark:border-2 transition-all duration-300 ${
               item.completed ? "opacity-40" : ""
             }`}
           >
-            <div className="flex items-center justify-between w-full transition-shadow duration-300">
+            <div className="flex items-center justify-between w-full transition-shadow duration-300 whitespace-nowrap">
               {editTaskId === item.id ? (
                 <input
                   type="text"
@@ -90,7 +94,7 @@ export default function TaskList({ tasks, setTasks, priority }) {
                 />
               ) : (
                 <p
-                  className={`font-semibold text-md ${
+                  className={`font-semibold text-md mr-4${
                     item.completed
                       ? "line-through text-accent dark:text-info"
                       : ""
